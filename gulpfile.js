@@ -1,20 +1,12 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-// var jade = require('gulp-jade');
-// var sass = require('gulp-sass');
-// var plumber = require('gulp-plumber');
-// var postcss = require('gulp-postcss')
+
 var autoprefixer = require('autoprefixer')
-var babel = require('gulp-babel')
-var concat = require('gulp-concat');
-var sourcemaps = require('gulp-sourcemaps');
-var order = require("gulp-order")
 var cleanCSS = require('gulp-clean-css');
-var uglify = require('gulp-uglify');
 var minimist = require('minimist');
 var mainBowerFiles = require('main-bower-files');
 var browserSync = require('browser-sync').create();
-// var watch = require('gulp-watch');
+
 
 
 var envOptions = {
@@ -39,13 +31,31 @@ gulp.task('copyHtml', function() {
         .pipe(gulp.dest('./public/'))
 })
 
-gulp.task('jade', function() {
-    return gulp.src('./source/**/*.jade')
+// gulp.task('jade', function() {
+//     return gulp.src('./source/**/*.jade')
+//         .pipe($.plumber())
+//         .pipe($.jade({ pretty: true }))
+//         .pipe(gulp.dest('./public/'))
+//         .pipe(
+//             browserSync.reload({
+//                 stream: true,
+//             }),
+//         );
+// });
+gulp.task('pug', function() {
+    return gulp.src('./source/**/*.pug')
         .pipe($.plumber())
-        .pipe($.jade({ pretty: true }))
+        .pipe($.pug({
+            pretty: true
+        }))
         .pipe(gulp.dest('./public/'))
-        .pipe(browserSync.stream());
-});
+        .pipe(
+            browserSync.reload({
+                stream: true,
+            }),
+        );
+})
+
 
 gulp.task('sass', function() {
 
@@ -108,9 +118,11 @@ gulp.task('vendorJs', function() {
         .pipe(gulp.dest('./public/javascripts'))
 })
 
-gulp.task('build', gulp.series('clean', 'jade', 'babel', 'sass', 'bower', 'vendorJs'))
 
-gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('jade', 'sass', 'babel', 'imagesMin'),
+
+gulp.task('build', gulp.series('clean', 'pug', 'babel', 'sass', 'bower', 'vendorJs'))
+
+gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('pug', 'sass', 'babel', 'imagesMin'),
     function(done) {
         browserSync.init({
             server: {
@@ -119,7 +131,7 @@ gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('jade', 'sas
             reloadDebounce: 2000,
         });
         gulp.watch(['./source/scss/**/*.scss', './source/scss/**/*.sass'], gulp.series('sass'));
-        gulp.watch(['./source/**/*.jade'], gulp.series('jade'));
+        gulp.watch(['./source/**/*.pug'], gulp.series('pug'));
         gulp.watch(['./source/js/**/*.js'], gulp.series('babel'));
         done();
     }

@@ -19,18 +19,19 @@ var options = minimist(process.argv.slice(2), envOptions)
 console.log(options)
 
 
-gulp.task('clean', function() {
+gulp.task('clean', function () {
     return gulp.src(['./.tmp', './public'], { read: false })
         .pipe($.clean())
 })
 
 
 
-gulp.task('copyHtml', function() {
+gulp.task('copyHtml', function () {
     return gulp.src('./source/**/*.html')
         .pipe(gulp.dest('./public/'))
 })
 
+<<<<<<< HEAD
 // gulp.task('jade', function() {
 //     return gulp.src('./source/**/*.jade')
 //         .pipe($.plumber())
@@ -44,6 +45,10 @@ gulp.task('copyHtml', function() {
 // });
 gulp.task('pug', function() {
     return gulp.src('./source/**/*.pug')
+=======
+gulp.task('jade', function () {
+    return gulp.src('./source/**/*.jade')
+>>>>>>> cfe0b99ce6d4fd5b48e0d61d7b0156fd7bc0c12d
         .pipe($.plumber())
         .pipe($.pug({
             pretty: true
@@ -57,7 +62,7 @@ gulp.task('pug', function() {
 })
 
 
-gulp.task('sass', function() {
+gulp.task('sass', function () {
 
     return gulp.src('./source/scss/**/*.scss')
         .pipe($.plumber())
@@ -71,7 +76,7 @@ gulp.task('sass', function() {
         .pipe(browserSync.stream());
 });
 
-gulp.task('babel', function() {
+gulp.task('babel', function () {
     return gulp.src('./source/js/**/*.js')
         .pipe($.sourcemaps.init())
         .pipe($.babel({
@@ -87,17 +92,17 @@ gulp.task('babel', function() {
         .pipe(gulp.dest('./public/js'))
         .pipe(browserSync.stream());
 })
-gulp.task('imagesMin', function() {
+gulp.task('imagesMin', function () {
     return gulp.src('./source/images/*')
         .pipe($.if(options.env === 'production', $.imagemin()))
         .pipe(gulp.dest('./public/images'))
 })
 
-gulp.task('bower', function() {
+gulp.task('bower', function () {
     // var filterJS = gulpFilter('**/*.js', { restore: true });
     return gulp.src(mainBowerFiles({
-            "overrides": { "bootstrap": { "main": ["dist/js/bootstrap.js", "dist/vue.js"] } }
-        }))
+        "overrides": { "bootstrap": { "main": ["dist/js/bootstrap.js", "dist/vue.js"] } }
+    }))
         // .pipe(mainBowerFiles())
         // .pipe(concat('vendor.js'))
         // .pipe(uglify())
@@ -107,7 +112,7 @@ gulp.task('bower', function() {
 });
 
 
-gulp.task('vendorJs', function() {
+gulp.task('vendorJs', function () {
     return gulp.src(['./.tmp/vendors/**/**.js'])
         // .pipe($.order([
         //     'jquery.js',
@@ -117,13 +122,23 @@ gulp.task('vendorJs', function() {
         .pipe($.if(options.env === 'production', $.uglify()))
         .pipe(gulp.dest('./public/javascripts'))
 })
+gulp.task('deploy', function () {
+    return gulp.src('./public/**/*')
+        .pipe($.ghPages());
+});
 
 
+
+<<<<<<< HEAD
 
 gulp.task('build', gulp.series('clean', 'pug', 'babel', 'sass', 'bower', 'vendorJs'))
 
 gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('pug', 'sass', 'babel', 'imagesMin'),
     function(done) {
+=======
+gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('jade', 'sass', 'babel', 'imagesMin'),
+    function (done) {
+>>>>>>> cfe0b99ce6d4fd5b48e0d61d7b0156fd7bc0c12d
         browserSync.init({
             server: {
                 baseDir: "./public"

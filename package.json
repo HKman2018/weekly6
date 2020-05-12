@@ -14,17 +14,13 @@
         "@babel/preset-env": "^7.9.6",
         "autoprefixer": "^9.7.6",
         "babel-core": "^6.26.3",
+        "babel-loader": "^8.1.0",
         "browser-sync": "^2.26.7",
+        "del": "^5.1.0",
         "gulp": "^4.0.2",
         "gulp-babel": "^8.0.0",
-        "gulp-clean": "^0.4.0",
         "gulp-clean-css": "^4.3.0",
         "gulp-concat": "^2.6.1",
-<<<<<<< HEAD
-        "gulp-front-matter": "^1.3.0",
-=======
-        "gulp-gh-pages": "^0.5.4",
->>>>>>> cfe0b99ce6d4fd5b48e0d61d7b0156fd7bc0c12d
         "gulp-if": "^3.0.0",
         "gulp-imagemin": "^7.1.0",
         "gulp-jade": "^1.1.0",
@@ -39,7 +35,8 @@
         "gulp-watch": "^5.0.1",
         "main-bower-files": "^2.13.3",
         "minimist": "^1.2.5",
-        "node-sass": "^4.14.0"
+        "node-sass": "^4.14.0",
+        "webpack-stream": "^5.2.1"
     },
     "browserslist": [
         "> 5%"

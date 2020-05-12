@@ -3,35 +3,26 @@ var $ = require('gulp-load-plugins')();
 
 var autoprefixer = require('autoprefixer')
 var cleanCSS = require('gulp-clean-css');
-var minimist = require('minimist');
+var uglify = require('gulp-uglify');
 var mainBowerFiles = require('main-bower-files');
+var envOptions = require('./envOptions')
 var browserSync = require('browser-sync').create();
+const webpack = require('webpack-stream');
 
 
 
-var envOptions = {
-    string: 'env',
-    default: {
-        env: 'develop'
-    }
-}
-var options = minimist(process.argv.slice(2), envOptions)
-console.log(options)
 
-
-gulp.task('clean', function () {
-    return gulp.src(['./.tmp', './public'], { read: false })
-        .pipe($.clean())
+gulp.task('clean', function() {
+    return del(['./.tmp', './public'])
 })
 
 
 
-gulp.task('copyHtml', function () {
+gulp.task('copyHtml', function() {
     return gulp.src('./source/**/*.html')
         .pipe(gulp.dest('./public/'))
 })
 
-<<<<<<< HEAD
 // gulp.task('jade', function() {
 //     return gulp.src('./source/**/*.jade')
 //         .pipe($.plumber())
@@ -45,24 +36,17 @@ gulp.task('copyHtml', function () {
 // });
 gulp.task('pug', function() {
     return gulp.src('./source/**/*.pug')
-=======
-gulp.task('jade', function () {
-    return gulp.src('./source/**/*.jade')
->>>>>>> cfe0b99ce6d4fd5b48e0d61d7b0156fd7bc0c12d
         .pipe($.plumber())
         .pipe($.pug({
             pretty: true
         }))
         .pipe(gulp.dest('./public/'))
-        .pipe(
-            browserSync.reload({
-                stream: true,
-            }),
-        );
+        .pipe(browserSync.stream());
+    g
 })
 
 
-gulp.task('sass', function () {
+gulp.task('sass', function() {
 
     return gulp.src('./source/scss/**/*.scss')
         .pipe($.plumber())
@@ -70,20 +54,37 @@ gulp.task('sass', function () {
         .pipe($.sass().on('error', $.sass.logError))
         //編譯完成
         .pipe($.postcss([autoprefixer()]))
-        .pipe($.if(options.env === 'production', cleanCSS()))
+        .pipe($.if(envOptions.env === 'production', cleanCSS()))
         .pipe($.sourcemaps.write('.'))
         .pipe(gulp.dest('./public/css'))
         .pipe(browserSync.stream());
 });
 
-gulp.task('babel', function () {
+gulp.task('babel', function() {
     return gulp.src('./source/js/**/*.js')
         .pipe($.sourcemaps.init())
         .pipe($.babel({
             presets: ['@babel/env']
         }))
+        .pipe(
+            webpack({
+                mode: 'development',
+                output: {
+                    filename: 'all.js',
+                },
+                module: {
+                    rules: [{
+                        test: /\.m?js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        use: {
+                            loader: 'babel-loader',
+                        },
+                    }, ],
+                },
+            })
+        )
         .pipe($.concat('all.js'))
-        .pipe($.if(options.env === 'production', $.uglify({
+        .pipe($.if(envOptions.env === 'production', $.uglify({
             compress: {
                 drop_console: true
             }
@@ -92,17 +93,17 @@ gulp.task('babel', function () {
         .pipe(gulp.dest('./public/js'))
         .pipe(browserSync.stream());
 })
-gulp.task('imagesMin', function () {
+gulp.task('imagesMin', function() {
     return gulp.src('./source/images/*')
-        .pipe($.if(options.env === 'production', $.imagemin()))
+        .pipe($.if(envOptions.env === 'production', $.imagemin()))
         .pipe(gulp.dest('./public/images'))
 })
 
-gulp.task('bower', function () {
+gulp.task('bower', function() {
     // var filterJS = gulpFilter('**/*.js', { restore: true });
     return gulp.src(mainBowerFiles({
-        "overrides": { "bootstrap": { "main": ["dist/js/bootstrap.js", "dist/vue.js"] } }
-    }))
+            "overrides": { "bootstrap": { "main": ["dist/js/bootstrap.js", "dist/vue.js"] } }
+        }))
         // .pipe(mainBowerFiles())
         // .pipe(concat('vendor.js'))
         // .pipe(uglify())
@@ -112,37 +113,30 @@ gulp.task('bower', function () {
 });
 
 
-gulp.task('vendorJs', function () {
+gulp.task('vendorJs', function() {
     return gulp.src(['./.tmp/vendors/**/**.js'])
         // .pipe($.order([
         //     'jquery.js',
         //     'bootstrap.js'
         // ]))
         .pipe($.concat('vendor.js'))
-        .pipe($.if(options.env === 'production', $.uglify()))
+        .pipe($.if(envOptions.env === 'production', $.uglify()))
         .pipe(gulp.dest('./public/javascripts'))
 })
-gulp.task('deploy', function () {
-    return gulp.src('./public/**/*')
-        .pipe($.ghPages());
-});
 
 
 
-<<<<<<< HEAD
-
-gulp.task('build', gulp.series('clean', 'pug', 'babel', 'sass', 'bower', 'vendorJs'))
+gulp.task('build', gulp.series('clean', 'pug', 'babel', 'sass', 'bower', 'vendorJs', 'imagesMin'))
 
 gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('pug', 'sass', 'babel', 'imagesMin'),
     function(done) {
-=======
-gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('jade', 'sass', 'babel', 'imagesMin'),
-    function (done) {
->>>>>>> cfe0b99ce6d4fd5b48e0d61d7b0156fd7bc0c12d
         browserSync.init({
             server: {
-                baseDir: "./public"
+                baseDir: "public/",
+                index: "layout.html",
+                page: "page.html"
             },
+            // startPath: "/html",
             reloadDebounce: 2000,
         });
         gulp.watch(['./source/scss/**/*.scss', './source/scss/**/*.sass'], gulp.series('sass'));

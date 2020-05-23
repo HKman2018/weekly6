@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
-
+var del = require('del')
 var autoprefixer = require('autoprefixer')
 var cleanCSS = require('gulp-clean-css');
 var uglify = require('gulp-uglify');
@@ -23,17 +23,7 @@ gulp.task('copyHtml', function() {
         .pipe(gulp.dest('./public/'))
 })
 
-// gulp.task('jade', function() {
-//     return gulp.src('./source/**/*.jade')
-//         .pipe($.plumber())
-//         .pipe($.jade({ pretty: true }))
-//         .pipe(gulp.dest('./public/'))
-//         .pipe(
-//             browserSync.reload({
-//                 stream: true,
-//             }),
-//         );
-// });
+
 gulp.task('pug', function() {
     return gulp.src('./source/**/*.pug')
         .pipe($.plumber())
@@ -59,6 +49,13 @@ gulp.task('sass', function() {
         .pipe(gulp.dest('./public/css'))
         .pipe(browserSync.stream());
 });
+gulp.task('jquery', function() {
+    return gulp.src('bower_components/jquery/dist/jquery.min.js')
+        .pipe($.uglify())
+        .pipe($.sourcemaps.write('.'))
+        .pipe(gulp.dest('./public/js'))
+        .pipe(browserSync.stream());
+})
 
 gulp.task('babel', function() {
     return gulp.src('./source/js/**/*.js')
@@ -124,16 +121,19 @@ gulp.task('vendorJs', function() {
         .pipe(gulp.dest('./public/javascripts'))
 })
 
+gulp.task('deploy', function() {
+    return gulp.src('./public/**/*')
+        .pipe($.ghPages())
+})
 
+gulp.task('build', gulp.series('clean', 'pug', 'babel', 'sass', 'bower', 'vendorJs', 'imagesMin', 'jquery'))
 
-gulp.task('build', gulp.series('clean', 'pug', 'babel', 'sass', 'bower', 'vendorJs', 'imagesMin'))
-
-gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('pug', 'sass', 'babel', 'imagesMin'),
+gulp.task('default', gulp.series('bower', 'vendorJs', gulp.parallel('pug', 'sass', 'babel', 'imagesMin', 'jquery'),
     function(done) {
         browserSync.init({
             server: {
                 baseDir: "public/",
-                index: "layout.html",
+                index: "index.html",
                 page: "page.html"
             },
             // startPath: "/html",

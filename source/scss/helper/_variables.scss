@@ -30,13 +30,13 @@ $cyan: #17a2b8 !default;
 $colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $colors: map-merge( ( "blue": $blue, "indigo": $indigo, "purple": $purple, "pink": $pink, "red": $red, "orange": $orange, "yellow": $yellow, "green": $green, "teal": $teal, "cyan": $cyan, "white": $white, "gray": $gray-600, "gray-dark": $gray-800), $colors);
-$primary: $blue !default;
-$secondary: $gray-600 !default;
-$success: $green !default;
-$info: $cyan !default;
+$primary: #0E8A00; //$blue !default;
+$secondary:#0000009A; //$gray-600 !default;
+$success: #FFFFFF99; //$green !default;
+$info: $green; //$cyan !default;
 $warning: $yellow !default;
-$danger: $red !default;
-$light: $gray-100 !default;
+$danger: #121212; //$red !default;
+$light: #00000062; //$gray-100 !default;
 $dark: $gray-800 !default;
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -74,7 +74,12 @@ $enable-deprecation-messages: true !default;
 $spacer: 1rem !default;
 $spacers: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
-$spacers: map-merge( ( 0: 0, 1: ($spacer * .25), 2: ($spacer * .5), 3: $spacer, 4: ($spacer * 1.5), 5: ($spacer * 3)), $spacers);
+$spacers: map-merge( ( 0: 0, 4: 4px, 8:8px, //($spacer * .25),
+16: 16px, //($spacer * .5),
+15:15px, 19: 19px, 23:23px, 24: 24px, //$spacer, 
+30: 30px, 32: 32px, 34:34px, 45:45px, //($spacer * 1.5), 
+48: 48px, 52:52px, //($spacer * 3),
+60:60px, 72: 72px, 95:95px, 100:100px, 108:108px, 115:115px, 124:124px, 150:150px, 156:156px, 172:172px, 176:176px, 236:236px), $spacers);
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -165,7 +170,7 @@ Consolas,
 monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$font-size-base: 1rem!default; // Assumes the browser default, typically `16px`
 $font-size-lg: $font-size-base * 1.25 !default;
 $font-size-sm: $font-size-base * .875 !default;
 $font-weight-lighter: lighter !default;
@@ -175,7 +180,7 @@ $font-weight-bold: 700 !default;
 $font-weight-bolder: bolder !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
-$h1-font-size: $font-size-base * 2.5 !default;
+$h1-font-size: $font-size-base *1.5; //* 2.5 !default;
 $h2-font-size: $font-size-base * 2 !default;
 $h3-font-size: $font-size-base * 1.75 !default;
 $h4-font-size: $font-size-base * 1.5 !default;

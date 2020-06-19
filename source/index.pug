@@ -1,15 +1,108 @@
 extend ./layouts/layout.pug
-
-block title
-  title Bootstrap
-
-block content
-   .box.box2 1
-   .box.box2 2
-   .box.box2(data-aos="fade-left") 3
-   .box.box2(data-aos="fade-left") 4
-   .box.box2(data-aos="fade-left") 5
-
   
+block title
+   title 首頁
 
+block content              
+  .banner.pb-md-236.pb-sm-128.mb-md-72.mb-sm-72
+                  
+    .row.justify-content-end
+      .col-md-6.bg-cover.px-0
+    
+    .container.p-md-0
+      .row.justify-content-md-start.text-dark.text-sm-white
+       .col-md-7 
+         h2.fs-48.mb-24 Enjoy Your
+           br
+           |Minimalist Lifestyle.
+         p.fs-24.mb-48.mb-sm-108 The best crafts in Taiwan. Get your free 
+           br
+           |shipping on the first order.
+         .btn.btn-primary.btn-sm-block.py-19.px-md-45.fs-16 Shop now
+  section.craft
+    //- 各種工藝
+    ul.container
+      li.mb-md-32.mb-sm-24
+       .row
+        .col-md-6.col-sm-12.px-0
+          img.mb-sm-16.mb-md-0.pr-md-15(src="./images/neven-krcmarek-F1oNsAykHa0-unsplash.jpg", alt="", srcset="")
+        .col-md-6.col-sm-12.d-flex.justify-content-center.align-items-center.px-0
+         div.px-md-95
+          h3.fs-24 Special Clays
+          p.mb-md-24.fs-sm-16 A general body formulation for contemporary earthenware is 25% kaolin, 25% ball clay, 35% quartz and 15% feldspar.
+          h4.text-primary learn more
+      li.mb-md-32.mb-sm-24
+       .row.flex-md-row-reverse
+        .col-md-6.col-sm-12.px-0.pr-md-15(data-aos="fade-left")
+           img.mb-sm-16.mb-md-0.pl-md-15(src="./images/anne-nygard-sHyerRuFqT4-unsplash.jpg")
+        .col-md-6.col-sm-12.d-flex.justify-content-center.align-items-center.px-0
+         div.text-md-right.px-md-95
+           h3.fs-24 Less is more
+           p.mb-md-24.fs-sm-16 Trimming pottery can transform a weighty Earth-bound pot into one that is a pleasure to hold, look at, and use.
+           h4.text-primary learn more
+      li.mb-md-32.mb-sm-24
+       .row
+        .col-md-6.col-sm-12.px-0(data-aos="fade-right")
+         img.mb-sm-16.mb-md-0.pr-md-15(src="./images/tom-crew-GOtE6-VOwH0-unsplash.jpg")
+        .col-md-6.col-sm-12.d-flex.justify-content-center.align-items-center.px-0
+         div.px-md-95
+           h3.fs-24 Marvelous Detail
+           p.mb-md-24.fs-sm-16 In Craftsman, the art director, working with marketers, develops or creates an idea of a new creation.
+           h4.text-primary learn more
+  section.artDirector.mb-md-72.mb-sm-48
+    .jumbotron
+      .container
+       .row
+        .col-md-6.col-sm-12.d-flex.text-left.mb-sm-125(data-aos="fade-right")
+          p.fs-32.pr-md-115.text-white “I want to make the life more simple by crafts.”
+        .col-md-6.col-sm-12.text-md-right
+          p.text-success.mr-md-172.mb-0 Art Director
+          h3.text-white.fs-24.mr-md-72 hsiao-Ming Chen
+          ul.d-flex.justify-content-md-end.mr-md-124
+            li
+              a.fs-14(href="") Instagram
+            li
+              a.fs-14.ml-24(href="") Twitter
+  section.swiper.mb-md-72.mb-sm-48
 
+     .swiper-container
+      ul.swiper-wrapper.d-flex.pl-0.mb-0
+        li.swiper-slide
+         .card
+          .positionOnSale
+             img.card-img-top(src="./images/photo1.jpg", alt="")
+             p.text-white ON SALE
+          .card-body.p-0
+            h3.card-text.fs-24.mt-8 Tatami Cup
+            .d-flex
+             p.card-text.mb-0 NT$1,080
+             p.card-text.pl-8.text-light NT$1,200
+        li.swiper-slide
+         .card
+          img.card-img-top(src="./images/photo2.jpg", alt="")
+          .card-body.p-0
+            h3.card-text.fs-24.mt-8 Couple Collection
+            p.card-text NT$2,800
+        li.swiper-slide
+         .card
+          img.card-img-top(src="./images/photo3.jpg", alt="")
+          .card-body.p-0
+            h3.card-text.fs-24.mt-8 Brotherhood Vase
+            p.card-text NT$4,800
+        li.swiper-slide
+          img.card-img-top(src="./images/photo4.jpg", alt="")
+          .card-body.p-0
+            h3.card-text.fs-24.mt-8 Baifan Bowl
+            p.card-text NT$1,800      
+  section.subscribeUs
+    .jumbotron.mb-0
+      .container.px-0
+        .row
+          .col-md-5.col-sm-12(data-aos="fade-right")
+            h2.fs-48.fs-sm-32.mb-md-48.mb-sm-24.text-white Subscribe for news 
+             br
+             |and special offers!
+            .input-group.input-group-lg
+              input.form-control(type="text" placeholder="Your email address")
+              .input-group-append
+                .btn.btn-info(type="button") Subscribe

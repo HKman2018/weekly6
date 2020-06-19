@@ -1,0 +1,99 @@
+    //text tool
+    .fs-14 {
+        font-size: 0.875rem;
+        line-height: 1.14;
+    }
+    
+    .fs-16 {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    @media (max-width: 576px) {
+        .fs-sm-16 {
+            font-size: 1rem;
+        }
+    }
+    
+    .fs-24 {
+        font-size: 1.5rem;
+        line-height: 1.208;
+    }
+    
+    .fs-32 {
+        font-size: 2rem;
+        line-height: 1.5;
+    }
+    
+    @media(max-width: 576px) {
+        .fs-sm-32 {
+            font-size: 2rem!important;
+            line-height: 1.5;
+        }
+    }
+    
+    .fs-48 {
+        font-size: 3rem;
+        line-height: 1.5;
+    }
+    
+    //grid tool
+    @media (max-width: 576px) {
+        .text-sm-white {
+            color: #fff!important;
+        }
+        .mb-sm-16 {
+            margin-bottom: 16px!important;
+        }
+        .mb-sm-24 {
+            margin-bottom: 24px!important;
+        }
+        .mb-sm-48 {
+            margin-bottom: 48px !important;
+        }
+        .mb-sm-72 {
+            margin-bottom: 72px!important;
+        }
+        .mb-sm-108 {
+            margin-bottom: 108px !important;
+        }
+        .mb-sm-125 {
+            margin-bottom: 125px !important;
+        }
+        .mb-sm-176 {
+            margin-bottom: 176px!important;
+        }
+        .pt-sm-23 {
+            padding-top: 23px!important;
+        }
+        .pt-sm-32 {
+            padding-top: 32px!important;
+        }
+    }
+    
+    .btn-sm-block {
+        display: inline-block;
+        @media (max-width: 576px) {
+            display: block !important;
+        }
+    }
+    
+    .positionOnSale {
+        position: relative;
+        p {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            @media (max-width: 576px) {
+                top: 10px;
+                right: 55px;
+            }
+        }
+    }
+    
+    .mobileMarginBottom {
+        margin-bottom: 0px;
+        @media (max-width: 576px) {
+            margin-bottom: 176px!important;
+        }
+    }

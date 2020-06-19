@@ -91,7 +91,7 @@ gulp.task('babel', function() {
         .pipe(browserSync.stream());
 })
 gulp.task('imagesMin', function() {
-    return gulp.src('./source/images/*')
+    return gulp.src('./source/images/**/*')
         .pipe($.if(envOptions.env === 'production', $.imagemin()))
         .pipe(gulp.dest('./public/images'))
 })

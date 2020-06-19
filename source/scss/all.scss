@@ -1,15 +1,24 @@
+//bootstrap
 @import "../../node_modules/bootstrap/scss/functions";
-@import "variables";
+@import "./helper/variables";
 @import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/bootstrap";
-.box {
-    width: 400px;
-    height: 500px;
-    margin: 0 auto;
-    background: #000;
-    line-height: 100px;
-    margin-bottom: 50px;
-    color: #fff;
-    text-align: center;
-    font-size: 20px;
-}
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/button-group";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/jumbotron";
+@import "../../node_modules/bootstrap/scss/nav";
+@import "../../node_modules/bootstrap/scss/dropdown";
+@import "../../node_modules/bootstrap/scss/card";
+@import "../../node_modules/bootstrap/scss/forms";
+@import "../../node_modules/bootstrap/scss/transitions";
+@import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/input-group";
+//base
+@import "./base/base";
+@import "./base/util";
+//layouts
+@import "./layouts/header";
+@import "./layouts/content";
+@import "./layouts/footer"

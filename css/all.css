@@ -10275,7 +10275,7 @@ header a {
     position: absolute;
     top: 0;
     bottom: 43.817%;
-    background: url("../../images/banner.jpg") no-repeat;
+    background: url("../images/banner.jpg") no-repeat;
     background-size: cover;
     z-index: -999; }
     @media (max-width: 576px) {
@@ -10284,7 +10284,7 @@ header a {
         right: 0px; } }
 
 .artDirector .jumbotron {
-  background: url("../../images/burningparrot-u2Xn5Bzvllw-unsplash.jpg") no-repeat center center;
+  background: url("../images/burningparrot-u2Xn5Bzvllw-unsplash.jpg") no-repeat center center;
   background-size: cover;
   height: 26vh;
   padding: 150px 0px; }
@@ -10319,7 +10319,7 @@ header a {
     height: 300px; }
 
 .subscribeUs .jumbotron {
-  background: url("../../images/tom-crew-uDF1mW7EUwM-unsplash.jpg") no-repeat center center;
+  background: url("../images/tom-crew-uDF1mW7EUwM-unsplash.jpg") no-repeat center center;
   background-size: cover;
   height: 26vh;
   padding: 84px 0px; }

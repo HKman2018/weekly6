@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,700&amp;display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/all.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/all.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container p-md-0 mt-sm-16">
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent p-0">
+          <button class="navbar-toggler border-0 py-0" type="button" data-toggle="collapse" data-target="#collapseContent" aria-haspopup="true" aria-expanded="false" aria-controls="collapseContent"><span class="material-icons">dehaze</span></button><a class="navbar-brand py-0" href="https://www.w3schools.com"> 
+            <h1 class="fs-24 m-sm-16 my-md-24 text-dark text-sm-white">CRAFTsMAN</h1></a><a class="nav-link pr-0 ml-sm-1 order-md-3" href=""><span class="material-icons">shopping_cart   </span></a>
+          <div class="collapse navbar-collapse" id="collapseContent">
+            <ul class="navbar-nav ml-md-auto">
+              <li><a class="nav-link text-white" href="#">Product</a></li>
+              <li class="ml-md-48"><a class="nav-link text-white" href="#">Blog</a></li>
+              <li class="ml-md-48"><a class="nav-link text-white" href="#">Contact</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <footer class="footer bg-danger">
+      <div class="container d-flex justify-content-md-between">
+        <ul class="d-flex pl-0">
+          <li class="pt-md-32 pt-sm-23 mr-16 mobileMarginBottom"> 
+            <h3 class="fs-24 text-white">CRAFTsMAN</h3>
+          </li>
+          <li class="pt-md-34 pt-sm-23">
+            <p class="text-success">© 2020. All Rights Reserved.</p>
+          </li>
+        </ul>
+        <ul class="d-flex pl-0">
+          <li class="pt-md-32">
+            <p class="text-success mb-sm-16">Purchase Policy</p>
+          </li>
+          <li class="pt-md-32 ml-md-48">
+            <p class="text-success mb-sm-16">Privacy Policy</p>
+          </li>
+          <li class="pt-md-32 ml-md-48">
+            <p class="text-success mb-sm-16">Terms & Conditions</p>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/0f62aa162d.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init()</script>
+    <script>
+      var mySwiper = new Swiper('.swiper-container', {
+           // Optional parameters
+         slidesPerView: 1,
+         spaceBetween: 0,
+         // init: false,
+         pagination: {
+           el: '.swiper-pagination',
+           clickable: true,
+         },
+         breakpoints: {
+           576: {
+             slidesPerView: 3,
+             spaceBetween: 20,
+           },
+           1024: {
+             slidesPerView: 4,
+             spaceBetween: 30,
+           },
+         }
+       })
+    </script>
+  </body>
+</html>
